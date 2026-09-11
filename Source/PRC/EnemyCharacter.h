@@ -20,6 +20,12 @@ public:
 	TObjectPtr<UHealthComponent> HealthComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UStatComponent> StatComp;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "script_stats")
+	float MaxHP = 100.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "script_stats")
+	float CurrentHP = 100.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "script_stats")
+	float AttackDamage = 100.0f;
 
 protected:
 	// Called when the game starts or when spawned

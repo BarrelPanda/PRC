@@ -61,8 +61,17 @@ void AHeroCharacter::Move(const FInputActionValue& Value)
     const FVector ForwardDir = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
     const FVector RightDir = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
-    AddMovementInput(ForwardDir, MovementVector.Y);  // W/S
-    AddMovementInput(RightDir, MovementVector.X);  // A/D
+    if (!(ForwardDir + RightDir).IsNearlyZero() && !isDashing) {
+        MovementDirection_X = RightDir;
+        MovementDirection_Y = ForwardDir;
+        AddMovementInput(ForwardDir, MovementVector.Y);  // W/S
+        AddMovementInput(RightDir, MovementVector.X);  // A/D
+    }
+    else if (isDashing) {
+        AddMovementInput(MovementDirection_Y, MovementVector.Y);  // W/S
+        AddMovementInput(MovementDirection_X, MovementVector.X);  // A/D
+    }
+
 }
 
 void AHeroCharacter::Look(const FInputActionValue& Value)

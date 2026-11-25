@@ -18,6 +18,15 @@ protected:
     virtual void BeginPlay() override;
     virtual void SetupPlayerInputComponent(UInputComponent* Input) override;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
+    FVector MovementDirection_X;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
+    FVector MovementDirection_Y;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+    bool isDashing;
+
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
     TObjectPtr<USpringArmComponent> SpringArm;
 
@@ -38,6 +47,9 @@ protected:
 
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
     TObjectPtr<UInputAction> IA_Attack;
+
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+    TObjectPtr<UInputAction> IA_Dash;
 
 private:
     void Move(const struct FInputActionValue& Value);

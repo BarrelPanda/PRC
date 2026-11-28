@@ -71,5 +71,5 @@ void AHeroCharacter::Look(const FInputActionValue& Value)
     if (!Controller) return;
 
     AddControllerYawInput(LookAxisVector.X);
-    AddControllerPitchInput(LookAxisVector.Y);
+    AddControllerPitchInput(-LookAxisVector.Y);
 }
